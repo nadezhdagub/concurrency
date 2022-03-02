@@ -1,6 +1,7 @@
 package SynchronizeEx;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 interface Counter {
     void increment();
@@ -25,16 +26,16 @@ class Task implements Callable<Void> {
 }
 
 class CounterImpl implements Counter {
-    int count;
+    AtomicInteger count = new AtomicInteger();
 
     @Override
     public void increment() {
-        count++;
+        count.incrementAndGet();
     }
 
     @Override
     public int get() {
-        return count;
+        return count.get();
     }
 }
 
