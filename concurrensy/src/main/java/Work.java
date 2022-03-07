@@ -1,6 +1,18 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+class Rectangle {
+    synchronized void draw(){
+
+    }
+}
+
+class Square extends Rectangle{
+    synchronized void draw(){
+        super.draw();
+    }
+}
+
 class Task implements Runnable {
 
     private final Object res1;
