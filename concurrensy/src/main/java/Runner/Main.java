@@ -18,10 +18,39 @@ class Runner2 {
 
 public class Main {
     public static void main(String[] args) {
-        Runner1 runner1 = new Runner1();
-        Runner2 runner2 = new Runner2();
+        System.out.println(Thread.currentThread().getName());
 
-        runner1.startRunning();
-        runner2.startRunning();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    for (int i = 0; i < 10; i++) {
+                        System.out.println("Runner1: " + i);
+                        Thread.sleep(1000);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    for (int i = 0; i < 10; i++) {
+                        System.out.println("Runner2: " + i);
+                        Thread.sleep(1000);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        System.out.println("Main exited");
     }
 }
